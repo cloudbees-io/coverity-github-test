@@ -28,6 +28,11 @@ Refer to link:https://docs.cloudbees.com/docs/cloudbees-platform/latest/github-a
 | Yes
 | The Coverity on Polaris API token.
 
+| `step_id`
+| String
+| No
+| The ID of the step in the workflow.
+
 |===
 
 == Usage example
