@@ -1,1 +1,0 @@
-# coverity-github-test

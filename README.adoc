@@ -1,0 +1,56 @@
+= GitHub action: Scan with Coverity on Polaris SAST
+
+Use this action to perform static application security testing (SAST) on a repository with the Coverity on Polaris scanner from Black Duck.
+
+== Prequisites
+
+Set up the CloudBees platform and GHA to work together, providing key features of the platform to GHA workflows.
+Refer to link:https://docs.cloudbees.com/docs/cloudbees-platform/latest/github-actions/gha-getting-started[Getting started with GHA integration] for more information.
+
+== Inputs
+
+[cols="2a,1a,1a,3a",options="header"]
+.Input details
+|===
+
+| Input name
+| Data type
+| Required?
+| Description
+
+| `server-url`
+| String
+| Yes
+| The Coverity on Polaris server URL.
+
+| `api-token`
+| String
+| Yes
+| The Coverity on Polaris API token.
+
+|===
+
+== Usage example
+
+In your YAML file, add:
+
+[source,yaml]
+----
+
+      - name: Scan with Coverity on Polaris
+        uses: https://github.com/cloudbees-io/coverity-polaris-sast-scan-code@v1
+        with:
+          server-url: ${{ vars.COVERITY_POLARIS_SERVER_URL }}
+          api-token: ${{ secrets.COVERITY_POLARIS_TOKEN }}
+
+----
+
+== License
+
+This code is made available under the 
+link:https://opensource.org/license/mit/[MIT license].
+
+== References
+
+* Learn more about link:https://docs.cloudbees.com/docs/cloudbees-platform/latest/github-actions/intro[Using GitHub Actions with the CloudBees platform].
+* Learn about link:https://docs.cloudbees.com/docs/cloudbees-platform/latest/[the CloudBees platform].
