@@ -1,6 +1,12 @@
 name: coverity
 
 inputs:
+  cloudbees_pat_token: 
+    description: Cloudbees PAT token of User
+    required: true
+  cloudbees_api_url: 
+    description: Cloudbees API URL
+    required: true
   server-url: 
     description: 'Server URL'
     required: true
