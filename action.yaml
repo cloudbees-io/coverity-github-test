@@ -79,8 +79,8 @@ runs:
           -e RUN_ID="$GITHUB_RUN_ID" \
           -e JOB_ID="$GITHUB_JOB" \
           -e STEP_ID="${{ inputs.step_id }}" \
-          -e POLARIS_SERVER_URL: ${{ inputs.server-url }}
-          -e POLARIS_ACCESS_TOKEN: ${{ inputs.api-token }}
+          -e POLARIS_SERVER_URL="${{ inputs.server-url }}" \
+          -e POLARIS_ACCESS_TOKEN="${{ inputs.api-token }}" \
           public.ecr.aws/l7o7z1g8/actions/plugin-coverity-sca:5d56e78cf87dde7d7e31818cfba23df7012afbc2 \
           --mode single
           
