@@ -66,7 +66,7 @@ runs:
           -v $GITHUB_WORKSPACE:$GITHUB_WORKSPACE \
           -e GITHUB_WORKSPACE="$GITHUB_WORKSPACE" \
           golang:latest \
-          bash -c "chmod 777 /workspace/* && ls -al /workspace"
+          bash -c "chmod 777 $GITHUB_WORKSPACE/* && ls -al $GITHUB_WORKSPACE"
           # is it safe to set the permissions to 777?
 
     - name: Run coverity on polaris compliance plugin
