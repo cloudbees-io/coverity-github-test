@@ -97,7 +97,7 @@ runs:
         docker run --rm \
           -v $GITHUB_WORKSPACE:$GITHUB_WORKSPACE \
           -e INPUT_CLOUDBEES_API_TOKEN="${{ inputs.cloudbees_pat_token }}" \
-          -e INPUT_CLOUDBEES_API_URL="${{ inputs.cloudbees_api_url }}"
+          -e INPUT_CLOUDBEES_API_URL="${{ inputs.cloudbees_api_url }}" \
           -e INPUT_IS_GITHUB_WORKFLOW="true" \
           -e INPUT_RUN_ID="14769369987" \
           -e GITHUB_RUN_ID="14769369987" \
