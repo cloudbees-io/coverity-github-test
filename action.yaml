@@ -35,6 +35,13 @@ runs:
         mkdir -p "$(dirname "$FILE_PATH")"
         touch "$FILE_PATH"
         echo "File created at: $FILE_PATH"
+
+    - name: Debug input token value
+      shell: bash
+      run: |
+        echo "api-token starts with: ${api_token:0:4}..."
+      env:
+        api_token: ${{ inputs.api-token }}
         
     - name: Generate reference files 
       shell: bash
