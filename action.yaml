@@ -43,7 +43,7 @@ runs:
         docker run --rm \
           -v $GITHUB_WORKSPACE:$GITHUB_WORKSPACE \
           -e INPUT_CLOUDBEES_API_TOKEN="${{ inputs.cloudbees_pat_token }}" \
-          -e INPUT_CLOUDBEES_API_URL="${{ vars.cloudbees_api_url }}" \
+          -e INPUT_CLOUDBEES_API_URL="${{ inputs.cloudbees_api_url }}" \
           -e INPUT_RUN_ID="$GITHUB_RUN_ID" \
           -e INPUT_IS_GITHUB_WORKFLOW="true" \
           -e GITHUB_RUN_ID="$GITHUB_RUN_ID" \
@@ -90,7 +90,7 @@ runs:
         docker run --rm \
           -v $GITHUB_WORKSPACE:$GITHUB_WORKSPACE \
           -e INPUT_CLOUDBEES_API_TOKEN="${{ inputs.cloudbees_pat_token }}" \
-          -e INPUT_CLOUDBEES_API_URL="${{ vars.cloudbees_api_url }}" \
+          -e INPUT_CLOUDBEES_API_URL="${{ inputs.cloudbees_api_url }}" \
           -e INPUT_RUN_ID="$GITHUB_RUN_ID" \
           -e INPUT_IS_GITHUB_WORKFLOW="true" \
           -e GITHUB_RUN_ID="$GITHUB_RUN_ID" \
