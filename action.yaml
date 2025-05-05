@@ -6,7 +6,8 @@ inputs:
     required: true
   cloudbees_api_url: 
     description: Cloudbees API URL
-    required: true
+    required: false
+    default: "https://api.cloudbees.io"
   server-url: 
     description: 'Server URL'
     required: true
