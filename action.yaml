@@ -1,10 +1,10 @@
 name: coverity
 
 inputs:
-  cloudbees_pat_token: 
+  cloudbees-pat: 
     description: Cloudbees PAT token of User
     required: true
-  cloudbees_api_url: 
+  cloudbees-url: 
     description: Cloudbees API URL
     required: false
     default: "https://api.cloudbees.io"
@@ -42,8 +42,8 @@ runs:
       run: |
         docker run --rm \
           -v $GITHUB_WORKSPACE:$GITHUB_WORKSPACE \
-          -e INPUT_CLOUDBEES_API_TOKEN="${{ inputs.cloudbees_pat_token }}" \
-          -e INPUT_CLOUDBEES_API_URL="${{ inputs.cloudbees_api_url }}" \
+          -e INPUT_CLOUDBEES_API_TOKEN="${{ inputs.cloudbees-pat }}" \
+          -e INPUT_CLOUDBEES_API_URL="${{ inputs.cloudbees-url }}" \
           -e INPUT_RUN_ID="$GITHUB_RUN_ID" \
           -e INPUT_IS_GITHUB_WORKFLOW="true" \
           -e GITHUB_RUN_ID="$GITHUB_RUN_ID" \
@@ -89,8 +89,8 @@ runs:
       run: |
         docker run --rm \
           -v $GITHUB_WORKSPACE:$GITHUB_WORKSPACE \
-          -e INPUT_CLOUDBEES_API_TOKEN="${{ inputs.cloudbees_pat_token }}" \
-          -e INPUT_CLOUDBEES_API_URL="${{ inputs.cloudbees_api_url }}" \
+          -e INPUT_CLOUDBEES_API_TOKEN="${{ inputs.cloudbees-pat }}" \
+          -e INPUT_CLOUDBEES_API_URL="${{ inputs.cloudbees-url }}" \
           -e INPUT_RUN_ID="$GITHUB_RUN_ID" \
           -e INPUT_IS_GITHUB_WORKFLOW="true" \
           -e GITHUB_RUN_ID="$GITHUB_RUN_ID" \
