@@ -14,7 +14,7 @@ inputs:
   api-token:  
     description: 'API token'
     required: true
-  step_id:
+  step-id:
     description: 'The ID of the step in the workflow'
     required: false
     default: ''
@@ -78,7 +78,7 @@ runs:
           -e GITHUB_WORKSPACE="$GITHUB_WORKSPACE" \
           -e RUN_ID="$GITHUB_RUN_ID" \
           -e JOB_ID="$GITHUB_JOB" \
-          -e STEP_ID="${{ inputs.step_id }}" \
+          -e STEP_ID="${{ inputs.step-id }}" \
           -e POLARIS_SERVER_URL="${{ inputs.server-url }}" \
           -e POLARIS_ACCESS_TOKEN="${{ inputs.api-token }}" \
           public.ecr.aws/l7o7z1g8/actions/plugin-coverity-sca:daf06d0ba4087e173eb4af9483a29ac7aa569422 \
