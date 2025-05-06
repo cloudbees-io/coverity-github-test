@@ -18,7 +18,7 @@ Refer to link:https://docs.cloudbees.com/docs/cloudbees-platform/latest/github-a
 | Required?
 | Description
 
-| `cloudbees_pat_token`
+| `cloudbees-pat`
 | String
 | Yes
 | Specify the PAT token obtained from Cloudbees.
@@ -32,11 +32,6 @@ Refer to link:https://docs.cloudbees.com/docs/cloudbees-platform/latest/github-a
 | String
 | Yes
 | The Coverity on Polaris API token.
-
-| `step_id`
-| String
-| No
-| The ID of the step in the workflow.
 
 |===
 
