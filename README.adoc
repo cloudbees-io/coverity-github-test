@@ -84,14 +84,6 @@ jobs:
       - name: Checkout repository code
         uses: actions/checkout@v3
 
-      - name: Print GitHub run ID
-        shell: bash
-        run: |
-          echo "Run ID is $GITHUB_RUN_ID"
-          echo "Source is ${{ github.server_url }}/${{ github.repository }}"
-          echo "Subject is $GITHUB_WORKFLOW_REF|${{ github.run_id }}|${{ github.run_attempt }}|${{ github.run_number }}"
-          echo "Job is $GITHUB_JOB"
-
       - name: Coverity scan
         uses: cloudbees-io/coverity-github-test@main
         with:
