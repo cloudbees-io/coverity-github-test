@@ -1,11 +1,10 @@
-= GitHub action: Scan with Coverity on Polaris SAST
+= Coverity scan and publish to Platform
 
-Use this action to perform static application security testing (SAST) on a repository with the Coverity on Polaris scanner from Black Duck.
+Use this action to perform static application security testing (SAST) on a repository with the Coverity on Polaris scanner from Black Duck, and then view comprehensive security results in the CloudBees platform.
 
-== Prequisites
+== Prerequisites
 
-Set up the CloudBees platform and GHA to work together, providing key features of the platform to GHA workflows.
-Refer to link:https://docs.cloudbees.com/docs/cloudbees-platform/latest/github-actions/gha-getting-started[Getting started with GHA integration] for more information.
+Set up the CloudBees platform and GHA to work together, providing key features of the platform to GHA workflows. Refer to link:https://docs.cloudbees.com/docs/cloudbees-platform/latest/github-actions/gha-getting-started[Getting started with GHA integration] for more information.
 
 == Inputs
 
@@ -18,43 +17,93 @@ Refer to link:https://docs.cloudbees.com/docs/cloudbees-platform/latest/github-a
 | Required?
 | Description
 
+| `api-token`
+| String
+| Yes
+| The Coverity on Polaris API token.
+
 | `cloudbees-pat`
 | String
 | Yes
-| Specify the PAT token obtained from Cloudbees.
-
-| `cloudbees-url`
-| String
-| No
-| The CloudBees platform URL. The default value is `https://api.cloudbees.io`.
+| The https://docs.cloudbees.com/docs/cloudbees-platform/latest/workflows/personal-access-token[CloudBees platform personal access token].
 
 | `server-url`
 | String
 | Yes
 | The Coverity on Polaris server URL.
 
-| `api-token`
+| `cloudbees-url`
 | String
-| Yes
-| The Coverity on Polaris API token.
+| No
+| The CloudBees platform URL.
+The default value is `"https://api.cloudbees.io"`.
 
 |===
 
-== Usage example
+== Usage examples
 
-In your YAML file, add:
+=== Basic example
+
+The following is a basic example of using this action:
 
 [source,yaml]
 ----
 
       - name: Scan with Coverity on Polaris
-        uses: https://github.com/cloudbees-io/coverity-polaris-sast-scan-code@v1
+        uses: cloudbees-io-gha/coverity-scan-publish@v1
         with:
-          cloudbees-pat : secrets.PAT 
-          server-url: ${{ vars.COVERITY_POLARIS_SERVER_URL }}
           api-token: ${{ secrets.COVERITY_POLARIS_TOKEN }}
+          cloudbees-pat : ${{ secrets.CloudBees-platform-PAT }}
+          server-url: ${{ vars.COVERITY_POLARIS_SERVER_URL }}
 
 ----
+
+
+=== Full workflow and run example
+
+The following GHA workflow example scans a repository with Coverity on Polaris.
+
+
+.Example GHA workflow YAML file
+[.collapsible]
+--
+
+[source, yaml,role="default-expanded"]
+----
+name: Coverity scan
+
+on:
+  push:
+    branches:
+    - mains
+
+jobs:
+  coverity-codescan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v3
+
+      - name: Print GitHub run ID
+        shell: bash
+        run: |
+          echo "Run ID is $GITHUB_RUN_ID"
+          echo "Source is ${{ github.server_url }}/${{ github.repository }}"
+          echo "Subject is $GITHUB_WORKFLOW_REF|${{ github.run_id }}|${{ github.run_attempt }}|${{ github.run_number }}"
+          echo "Job is $GITHUB_JOB"
+
+      - name: Coverity scan
+        uses: cloudbees-io/coverity-github-test@main
+        with:
+          api-token: ${{ secrets.COVERITY_API_TOKEN }}
+          cloudbees-pat: ${{ secrets.CLOUDBEES_QA_PAT }}
+          server-url: ${{ vars.COVERITY_SERVER_URL }}
+
+
+----
+--
+
+After the GHA run has completed, the security findings are collected and displayed in the CloudBees platform https://docs.cloudbees.com/docs/cloudbees-platform/latest/aspm/security-center[Security center] of the component containing the workflow.
 
 == License
 
